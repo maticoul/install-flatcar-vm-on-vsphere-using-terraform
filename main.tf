@@ -17,13 +17,6 @@ provider "vsphere" {
   allow_unverified_ssl = true
 }
 
-#provider "vsphere" {
-#  user                 = "administrator@vsphere.local"
-#  password             = "5ecur1p0rtM@"
-#  vsphere_server       = "192.168.40.23:9443"
-#  allow_unverified_ssl = true
-#}
-
 data "vsphere_datacenter" "datacenter" {
   name = var.deploy_vsphere_datacenter
 }
@@ -53,7 +46,6 @@ data "vsphere_network" "network" {
   datacenter_id = data.vsphere_datacenter.datacenter.id
 }
 
-
 ## Deployment of VM from Remote OVF
 resource "vsphere_virtual_machine" "etcd" {
   name                 = "${var.guest_name_prefix}-etcd0${count.index + 1}"
@@ -78,7 +70,7 @@ resource "vsphere_virtual_machine" "etcd" {
   }
   ovf_deploy {
     allow_unverified_ssl_cert = false
-    local_ovf_path            = "/home/securiport/terraform/ova/flatcar_production_vmware_ova.ova"
+    local_ovf_path            = "/terraform/ova/flatcar_production_vmware_ova.ova"
     disk_provisioning         = "thin"
     ip_protocol               = "IPV4"
     ip_allocation_policy      = "STATIC_MANUAL"
@@ -111,12 +103,6 @@ resource "vsphere_virtual_machine" "etcd" {
   } 
 }
 
-
-
-
-
-
-
 ## Deployment of VM from Remote OVF
 resource "vsphere_virtual_machine" "masters" {
   name                 = "${var.guest_name_prefix}-master0${count.index + 1}"
@@ -141,7 +127,7 @@ resource "vsphere_virtual_machine" "masters" {
   }
   ovf_deploy {
     allow_unverified_ssl_cert = false
-    local_ovf_path            = "/home/securiport/terraform/ova/flatcar_production_vmware_ova.ova"
+    local_ovf_path            = "/terraform/ova/flatcar_production_vmware_ova.ova"
     disk_provisioning         = "thin"
     ip_protocol               = "IPV4"
     ip_allocation_policy      = "STATIC_MANUAL"
@@ -174,10 +160,6 @@ resource "vsphere_virtual_machine" "masters" {
   } 
 }
 
-
-
-
-
 ## Deployment of VM from Remote OVF
 resource "vsphere_virtual_machine" "workers" {
   name                 = "${var.guest_name_prefix}-worker0${count.index + 1}"
@@ -202,7 +184,7 @@ resource "vsphere_virtual_machine" "workers" {
   }
   ovf_deploy {
     allow_unverified_ssl_cert = false
-    local_ovf_path            = "/home/securiport/terraform/ova/flatcar_production_vmware_ova.ova"
+    local_ovf_path            = "/terraform/ova/flatcar_production_vmware_ova.ova"
     disk_provisioning         = "thin"
     ip_protocol               = "IPV4"
     ip_allocation_policy      = "STATIC_MANUAL"
