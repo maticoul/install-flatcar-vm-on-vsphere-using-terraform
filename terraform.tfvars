@@ -1,14 +1,14 @@
 # Provider
-provider_vsphere_host     = "192.168.40.23:9443"
+provider_vsphere_host     = "hostname"
 provider_vsphere_user     = "Administrator@vsphere.local"
-provider_vsphere_password = "5ecur1p0rtM@"
+provider_vsphere_password = "P@ssw0rd"
 
 # Infrastructure
 deploy_vsphere_datacenter = "Datacenter"
 deploy_vsphere_cluster    = "K8S"
 deploy_vsphere_datastore  = "DATAS SRVK8S01"
 deploy_vsphere_network    = "VM Network"
-deploy_vsphere_host       = "192.168.40.17"
+deploy_vsphere_host       = "esxi-host"
 
 
 # Guest
@@ -17,8 +17,8 @@ guest_name_prefix     = "k8s-prod"
 guest_num_cores_per_socket    = "4"
 guest_num_cpus        = "6"
 guest_memory          = "4096"
-guest_ssh_user        = "securiport"
-guest_ssh_password    = "Securiport"
+guest_ssh_user        = "username"
+guest_ssh_password    = "P@ssw0rd"
 
  #Master(s)
 etcd_ips = {
@@ -41,8 +41,6 @@ worker_ips = {
   "2" = "10.0.0.213"
   "3" = "10.0.0..214"
 }
-
-
 
 # etcd(s)
 #  guest_host_etcd01 = "10.0.0..211"
