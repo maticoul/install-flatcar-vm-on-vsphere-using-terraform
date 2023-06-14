@@ -46,7 +46,7 @@ data "vsphere_network" "network" {
   datacenter_id = data.vsphere_datacenter.datacenter.id
 }
 
-## Deployment of VM from Remote OVF
+## Deployment of etcd VMs from OVF
 resource "vsphere_virtual_machine" "etcd" {
   name                 = "${var.guest_name_prefix}-etcd0${count.index + 1}"
   datacenter_id        = data.vsphere_datacenter.datacenter.id
@@ -103,7 +103,7 @@ resource "vsphere_virtual_machine" "etcd" {
   } 
 }
 
-## Deployment of VM from Remote OVF
+## Deployment of masters VMs from OVF
 resource "vsphere_virtual_machine" "masters" {
   name                 = "${var.guest_name_prefix}-master0${count.index + 1}"
   datacenter_id        = data.vsphere_datacenter.datacenter.id
@@ -160,7 +160,7 @@ resource "vsphere_virtual_machine" "masters" {
   } 
 }
 
-## Deployment of VM from Remote OVF
+## Deployment of workers VM from OVF
 resource "vsphere_virtual_machine" "workers" {
   name                 = "${var.guest_name_prefix}-worker0${count.index + 1}"
   datacenter_id        = data.vsphere_datacenter.datacenter.id
