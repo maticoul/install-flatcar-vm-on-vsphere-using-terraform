@@ -33,29 +33,26 @@ variable "deploy_vsphere_datastore" {
 #  description = "The path to the folder to put this virtual machine in, relative to the datacenter that the resource pool is in."
 #}
 
-variable "deploy_vsphere_network" {
+variable "guest_vsphere_network" {
   description = "Porgroup to which the virtual machine will be connected."
 }
 
-##### Guest
-# - Describes virtual machine / guest options
-
-variable "guest_template" {
-  description = "The source virtual machine or template to clone from."
+variable "deploy_vsphere_host" {
+  description = "Porgroup to which the virtual machine will be connected."
 }
 
-variable "guest_vcpu" {
+variable "guest_num_cpus" {
   description = "The number of virtual processors to assign to this virtual machine. Default: 1."
-  default     = "1"
+ # default     = "1"
 }
 
+variable "guest_num_cores_per_socket" {
+  description = "The number of virtual processors to assign to this virtual machine. Default: 1."
+ # default     = "1"
+}
 variable "guest_memory" {
   description = "The size of the virtual machine's memory, in MB. Default: 1024 (1 GB)."
-  default     = "1024"
-}
-
-variable "guest_ipv4_gateway" {
-  description = "The IPv4 default gateway."
+  #default     = "1024"
 }
 
 variable "guest_ssh_user" {
@@ -66,30 +63,6 @@ variable "guest_ssh_password" {
   description = "SSH password to connect to the guest VM."
 }
 
-##### etcd(s)
-# - Describes etcd(s) nodes (a.k.a., minions) options
-
-variable "etcd_ips" {
-  type        = map(any)
-  description = "List of IPs used for the kubernetes worker nodes."
-}
-
-##### Master(s)
-# - Describes master(s) nodes options
-
-variable "master_ips" {
-  type        = map(any)
-  description = "List of IPs used for the kubernetes master nodes. 1 IP for a single master, or 3 for a multi-master configuration."
-}
-
-##### Worker(s)
-# - Describes workers(s) nodes (a.k.a., minions) options
-
-variable "worker_ips" {
-  type        = map(any)
-  description = "List of IPs used for the kubernetes worker nodes."
-}
-
 variable "guest_host_etcd01" {
   description = "SSH password to connect to the guest VM."
 }
@@ -98,7 +71,7 @@ variable "guest_host_etcd02" {
   description = "SSH password to connect to the guest VM."
 }
 
-variable "guest_host_etcd0" {
+variable "guest_host_etcd03" {
   description = "SSH password to connect to the guest VM."
 }
 
